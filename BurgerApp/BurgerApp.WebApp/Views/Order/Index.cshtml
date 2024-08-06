@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OrderDto>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Orders Menu</title>
+    <link rel="stylesheet" href="~/css/Index.css" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered mt-2">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Address</th>
+                        <th>Is Delivered</th>
+                        <th>Store Location</th>
+                        <th>Burgers</th>
+                        <th class="w-15">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr class="text-center">
+                            <td>@order.FullName</td>
+                            <td>@order.Address</td>
+                            <td>@(order.IsDelivered ? "✔" : "✖")</td>
+                            <td>@order.Location.Name</td>
+                            <td>
+                                @if (order.OrderBurgers != null && order.OrderBurgers.Any())
+                                {
+                                    <ul class="list-unstyled">
+                                        @foreach (var orderBurger in order.OrderBurgers)
+                                        {
+                                            <li>
+                                                @orderBurger.Burger.Name - @orderBurger.Quantity
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span>No burgers</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-controller="Order" asp-action="Remove" method="post" style="display: inline;">
+                                    <button type="submit" class="btn btn-small btn-danger" name="id" value="@order.Id">Remove</button>
+                                </form>
+                                <form asp-controller="Order" asp-action="OrderDelivered" method="post" style="display: inline;">
+                                    <button type="submit" class="btn btn-small btn-success" name="id" value="@order.Id">Delivered</button>
+                                </form>
+                                <a asp-controller="Order" asp-action="EditOrder" asp-route-id="@order.Id" class="btn btn-small btn-warning">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-action="AddOrder" class="btn btn-lg btn-primary mt-2">Add New Order</a>
+        </div>
+    </div>
+</body>
+</html>

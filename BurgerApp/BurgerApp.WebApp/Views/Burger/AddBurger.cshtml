@@ -1,0 +1,35 @@
+﻿@model CreateBurgerVM
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Index.css" />
+
+</head>
+<body>
+    <form asp-controller="Burger" asp-action="AddBurger" method="post" class="form">
+        <div class="md-3 ">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="md-3">
+            <label asp-for="Price" class="form-label">Price</label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+        <div class="md-3 form-check fw-bold fs-5">
+            <input asp-for="IsVegetarian" class="form-check-input" type="checkbox" />
+            <label asp-for="IsVegetarian" class="form-check-label">Vegetarian Product</label>
+        </div>
+        <div class="md-3 form-check fw-bold fs-5">
+            <input asp-for="IsVegan" class="form-check-input" type="checkbox" />
+            <label asp-for="IsVegan" class="form-check-label">Vegan Product</label>
+        </div>
+        <div class="md-3 form-check fw-bold fs-5">
+            <input asp-for="HasFries" class="form-check-input" type="checkbox" />
+            <label asp-for="HasFries" class="form-check-label">Fries Included</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create New Burger</button>
+    </form>
+
+
+</body>
+</html>

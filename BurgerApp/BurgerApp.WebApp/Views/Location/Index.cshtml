@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LocationDto>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Burgers Menu</title>
+    <link rel="stylesheet" href="~/css/Index.css" />
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered mt-2">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Adress</th>
+                        <th>Opens At</th>
+                        <th>Closes At</th>
+                        <th class="w-15">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var location in Model)
+                    {
+                        <tr class="text-center">
+                            <td>@location.Name</td>
+                            <td>@location.Address</td>
+                            <td>@location.OpensAt.ToString("h:mm") AM</td>
+                            <td>@location.ClosesAt.ToString("h:mm") PM</td>
+                            <td>
+                                <form asp-controller="Location" asp-action="Remove" method="post" style="display: inline;">
+                                    <button type="submit" class="btn btn-small btn-danger" name="id" value="@location.Id">Remove</button>
+                                </form>
+                                <a asp-controller="Location" asp-action="EditLocation" asp-route-id="@location.Id" class="btn btn-small btn-warning">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-action="AddLocation" class="btn btn-lg btn-primary mt-2">Add New Location</a>
+        </div>
+    </div>
+</body>
+
+
+</html>

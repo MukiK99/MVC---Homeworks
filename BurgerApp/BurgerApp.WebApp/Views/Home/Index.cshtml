@@ -1,0 +1,43 @@
+﻿@model HomeVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="~/css/Index.css" />
+</head>
+<body>
+    <div class="container form">
+        <h1 class="text-bold">Statistics</h1>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                Most Popular Burger
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@Model.MostPopularBurger.Name</h5>
+                <p class="card-text">Price: $@Model.MostPopularBurger.Price</p>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                Number of Orders
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@Model.NumberOrOrders</h5>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                Average Order Price
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">$@Model.AverageOrderPrice</h5>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
